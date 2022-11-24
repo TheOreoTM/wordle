@@ -21,6 +21,15 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script type="module" src="./script.js"></script>
+  <script>
+    function on() {
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function off() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
   <body>
     <h1>Oreo's Wordle Clone</h1>
     <hr />
@@ -60,6 +69,15 @@
         <button class="keyboard-button">m</button>
         <button class="keyboard-button">Del</button>
       </div>
+    </div>
+    <div id="overlay" onclick="off()">
+      <div id="text">You won!</div>
+      <div id="text-row-1"></div>
+      <div id="text-row-2"></div>
+      <div id="text-row-3"></div>
+      <div id="text-row-4"></div>
+      <div id="text-row-5"></div>
+      <div id="text-row-6"></div>
     </div>
   </body>
 </html>

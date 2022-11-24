@@ -5,7 +5,21 @@ let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
+let emojis = [[], [], [], [], [], []];
+
 console.log(rightGuessString);
+
+function on() {
+  for (let i = 0; i < 6; i++) {
+    let addition = `${emojis[i].join('')}`;
+    document.getElementById(`text-row-${i + 1}`).append(addition);
+  }
+  document.getElementById('overlay').style.display = 'block';
+}
+
+function off() {
+  document.getElementById('overlay').style.display = 'none';
+}
 
 function initBoard() {
   let board = document.getElementById('game-board');
@@ -76,6 +90,8 @@ function checkGuess() {
     // is letter in the correct guess
     if (letterPosition === -1) {
       letterColor = 'var(--incorrect)';
+      emojis[6 - guessesRemaining][i] = '⬛';
+      console.log(emojis);
     } else {
       // now, letter is definitely in word
       // if letter index and right guess index are the same
@@ -83,9 +99,13 @@ function checkGuess() {
       if (currentGuess[i] === rightGuess[i]) {
         // shade green
         letterColor = 'var(--darkendGreen)';
+        emojis[6 - guessesRemaining][i] = '🟩';
+        console.log(emojis);
       } else {
         // shade box yellow
         letterColor = 'var(--darkendYellow)';
+        emojis[6 - guessesRemaining][i] = '🟨';
+        console.log(emojis);
       }
 
       rightGuess[letterPosition] = '#';
@@ -105,6 +125,7 @@ function checkGuess() {
   if (guessString === rightGuessString) {
     toastr.success('You guessed right! Game over!');
     guessesRemaining = 0;
+    on();
     return;
   } else {
     guessesRemaining -= 1;
